@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI(
-    title="OTP Auth Verification System(MVP)",
-    description="A simple full-stack auction system MVP using OTP (One-Time Password) instead of passwords.",
-    version="0.7.0",   
+    title="Restaurant Inventory & Waste Management",
+    description="A simple full-stack Restaurant Inventory & Waste Management System for Leanring purpose.",
+    version="0.1.0",   
 )
 
 app.add_middleware(
