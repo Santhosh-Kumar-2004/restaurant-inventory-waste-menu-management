@@ -39,7 +39,7 @@ function ChefOrders() {
     }
   };
 
-  if (user?.role !== "chef") {
+  if ((user?.role !== "chef") || (user?.role !== "admin")) {
     return (
       <div className="denied-container">
         <h2>🚫 Access Denied</h2>
