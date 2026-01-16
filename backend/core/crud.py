@@ -13,6 +13,7 @@ from models.order import Order, OrderItem, Invoice
 from sqlalchemy import func
 from models.inventory import InventoryItem, InventoryInflow, InventoryOutflow, WasteLog
 from models.order import Order, Invoice
+from models.menu import MenuItem
 
 
 
@@ -208,3 +209,30 @@ def get_invoices_summary(db):
         Invoice.gst_amount,
         Invoice.total_amount
     ).all()
+
+def create_menu_item(db, data):
+    item = MenuItem(
+        name=data.name,
+        category=data.category,
+        price=data.price
+    )
+    db.add(item)
+    db.commit()
+    db.refresh(item)
+    return item
+
+
+def get_menu_items(db, only_available=True):
+    query = db.query(MenuItem)
+    if only_available:
+        query = query.filter(MenuItem.is_available == True)
+    return query.all()
+
+
+def toggle_menu_item(db, item_id: int):
+    item = db.query(MenuItem).filter(MenuItem.id == item_id).first()
+    if not item:
+        return None
+    item.is_available = not item.is_available
+    db.commit()
+    return item
