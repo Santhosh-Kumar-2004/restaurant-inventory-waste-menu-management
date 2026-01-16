@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from routers.users import router as user_router
 from routers.inventory import router as inventory_router
 from routers.reports import router as report_router
+from routers.order import router as order_router
 
 
 load_dotenv()
@@ -33,4 +34,4 @@ def health_check():
 app.include_router(user_router)
 app.include_router(inventory_router)
 app.include_router(report_router)
-# app.include_router(inventory_router)
+app.include_router(order_router)

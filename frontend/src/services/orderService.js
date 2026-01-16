@@ -5,7 +5,7 @@ import { apiFetch } from "../api/http";
  * Roles allowed: admin, waiter
  */
 export function createOrder(data) {
-  return apiFetch("/orders", {
+  return apiFetch("/orders/", {
     method: "POST",
     body: JSON.stringify(data),
   });
