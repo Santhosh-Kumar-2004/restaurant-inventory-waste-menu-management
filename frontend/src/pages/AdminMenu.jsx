@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createMenuItem, getMenuItems, toggleMenuItem } from "../services/menuService";
-import "./AdminMenu.css";
+import "../styles/AdminMenu.css";
 
 function AdminMenu() {
   const user = JSON.parse(localStorage.getItem("user"));
