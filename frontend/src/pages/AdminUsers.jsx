@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllUsers, updateUserRole } from "../services/userService";
 import { useNavigate } from "react-router-dom";
 import "../styles/AdminUsers.css"
+import Navbar from "../components/Navbar";
 
 function AdminUsers() {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ function AdminUsers() {
 
   return (
     <div className="admin-container">
+        <Navbar />
         <div className="admin-card">
         <div className="admin-header">
             <div className="title-section">

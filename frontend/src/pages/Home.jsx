@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import Navbar from "../components/Navbar";
 import "../styles/Home.css"
+import Navbar from "../components/Navbar";
 
 function Home() {
   return (
     <div className="home-wrapper">
       {/* <Navbar /> */}
+      <Navbar />
       
       {/* Hero Section */}
       <section className="hero-section">

@@ -4,6 +4,7 @@ import "../styles/Login.css"
 import Register from "./Register";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 
 function Login() {
@@ -36,6 +37,7 @@ function Login() {
     <a href="/admin/users">Manage Users</a>
   </p>
 )} */}
+        {/* <Navbar /> */}
 
         <div className="login-card">
         <div className="login-header">

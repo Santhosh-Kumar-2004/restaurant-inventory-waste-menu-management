@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getInventoryReport } from "../services/inventoryService";
 import "../styles/Inventory.css"
+import Navbar from "../components/Navbar";
 
 function Inventory() {
   const [items, setItems] = useState([]);
@@ -23,6 +24,7 @@ function Inventory() {
 
   return (
     <div className="inventory-page-container">
+        <Navbar />
         <div className="inventory-card">
         {/* Header Section */}
         <div className="inventory-header">
