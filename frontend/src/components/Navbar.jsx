@@ -32,7 +32,7 @@ function Navbar() {
               </Link>
             )}
             {/* 👑 Admin-only links */}
-            {user.role === "admin" && (
+            {/* {user.role === "admin" && (
               <Link to="/inventory/create" className="nav-link admin-link">
                 Inventory Create
               </Link>
@@ -51,7 +51,7 @@ function Navbar() {
               <Link to="/inventory/waste" className="nav-link admin-link">
                 Inventory Waste
               </Link>
-            )}
+            )} */}
           </div>
         </div>
 
