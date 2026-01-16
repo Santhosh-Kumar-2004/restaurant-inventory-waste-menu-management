@@ -5,6 +5,8 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Inventory from "./pages/Inventory";
 import AdminUsers from "./pages/AdminUsers";
+import InventoryCreate from "./pages/InventoryCreate";
+
 
 import PrivateRoute from "./routers/privateRoutes";
 import AdminRoute from "./routers/AdminRoute";
@@ -28,6 +30,7 @@ function App() {
         {/* 👑 Admin Only Routes */}
         <Route element={<AdminRoute />}>
           <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/inventory/create" element={<InventoryCreate />} />
         </Route>
 
         {/* 🚫 Fallback */}
