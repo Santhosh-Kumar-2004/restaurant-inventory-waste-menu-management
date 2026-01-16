@@ -65,3 +65,7 @@ def update_order_status(
         "order_id": order.id,
         "status": order.status
     }
+
+@router.get("/")
+def get_all_orders(db: Session = Depends(get_db)):
+    return db.query(Order).order_by(Order.id.desc()).all()
