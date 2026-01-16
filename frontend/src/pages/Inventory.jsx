@@ -25,8 +25,31 @@ function Inventory() {
   return (
     <div className="inventory-page-container">
         <Navbar />
+
         <div className="inventory-card">
-        {/* Header Section */}
+
+        {/* ===== Admin Inventory Actions ===== */}
+        {user.role === "admin" && (
+            <div className="inventory-admin-actions">
+            <h3>Inventory Management</h3>
+            <div className="admin-action-links">
+                <Link to="/inventory/create" className="admin-action-btn">
+                Inventory Create
+                </Link>
+                <Link to="/inventory/inflow" className="admin-action-btn">
+                Inventory Inflow
+                </Link>
+                <Link to="/inventory/outflow" className="admin-action-btn">
+                Inventory Outflow
+                </Link>
+                <Link to="/inventory/waste" className="admin-action-btn">
+                Inventory Waste
+                </Link>
+            </div>
+            </div>
+        )}
+
+        {/* ===== Header Section ===== */}
         <div className="inventory-header">
             <div className="header-info">
             <h2>Inventory Report</h2>
@@ -36,6 +59,7 @@ function Inventory() {
                 {user.role === "waiter" && <span className="badge waiter">Waiter Access</span>}
             </div>
             </div>
+
             <button
             className="logout-btn"
             onClick={() => {
@@ -49,7 +73,7 @@ function Inventory() {
 
         {error && <div className="error-message">⚠️ {error}</div>}
 
-        {/* Inventory Table */}
+        {/* ===== Inventory Table ===== */}
         <div className="table-wrapper">
             <table className="inventory-table">
             <thead>
@@ -64,7 +88,9 @@ function Inventory() {
                 {items.map((item) => (
                 <tr key={item.inventory_item_id}>
                     <td className="font-bold">{item.item_name}</td>
-                    <td className="text-right stock-value">{item.current_stock}</td>
+                    <td className="text-right stock-value">
+                    {item.current_stock}
+                    </td>
                     <td className="unit-label">{item.unit}</td>
                     <td>
                     {item.current_stock <= 5 ? (
@@ -78,13 +104,14 @@ function Inventory() {
             </tbody>
             </table>
         </div>
-        
+
         {items.length === 0 && !error && (
             <div className="empty-state">No inventory items found.</div>
         )}
         </div>
     </div>
     );
+
 }
 
 export default Inventory;
