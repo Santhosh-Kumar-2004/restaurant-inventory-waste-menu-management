@@ -37,6 +37,11 @@ function Navbar() {
                 Create Orders
               </Link>
             )}
+            {user.role === "admin" && (
+              <Link to="/orders/items" className="nav-link admin-link">
+                Order Items
+              </Link>
+            )}
             {/* {user.role === "admin" && (
               <Link to="/inventory/inflow" className="nav-link admin-link">
                 Inventory Inflow
