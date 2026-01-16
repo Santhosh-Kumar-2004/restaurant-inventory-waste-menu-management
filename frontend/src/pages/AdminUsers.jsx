@@ -1,12 +1,30 @@
 import { useEffect, useState } from "react";
 import { getAllUsers, updateUserRole } from "../services/userService";
+import { useNavigate } from "react-router-dom";
 
 function AdminUsers() {
+  const navigate = useNavigate();
+
   const admin = JSON.parse(localStorage.getItem("user"));
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
 
+  // 🔐 Protect admin route
   useEffect(() => {
+    if (!admin) {
+      navigate("/login");
+      return;
+    }
+
+    if (admin.role !== "admin") {
+      navigate("/");
+      return;
+    }
+  }, [admin, navigate]);
+
+  useEffect(() => {
+    if (!admin?.email) return;
+
     async function loadUsers() {
       try {
         const data = await getAllUsers(admin.email);
@@ -17,7 +35,7 @@ function AdminUsers() {
     }
 
     loadUsers();
-  }, [admin.email]);
+  }, [admin?.email]);
 
   const handleRoleChange = async (userId, newRole) => {
     try {
@@ -32,6 +50,8 @@ function AdminUsers() {
       alert(err.message);
     }
   };
+
+  if (!admin) return null;
 
   return (
     <div>
