@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getInventoryReport } from "../services/inventoryService";
 import "../styles/Inventory.css"
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 function Inventory() {
   const [items, setItems] = useState([]);
@@ -30,24 +31,47 @@ function Inventory() {
 
         {/* ===== Admin Inventory Actions ===== */}
         {user.role === "admin" && (
-            <div className="inventory-admin-actions">
-            <h3>Inventory Management</h3>
-            <div className="admin-action-links">
-                <Link to="/inventory/create" className="admin-action-btn">
-                Inventory Create
+            <div className="inventory-admin-section">
+                <div className="admin-section-header">
+                <h3>Admin Command Center</h3>
+                <span className="admin-badge">Management Mode</span>
+                </div>
+                
+                <div className="admin-action-grid">
+                <Link to="/inventory/create" className="action-card create">
+                    <span className="action-icon">➕</span>
+                    <div className="action-text">
+                    <span className="action-title">Create Item</span>
+                    <p>Add new stock to system</p>
+                    </div>
                 </Link>
-                <Link to="/inventory/inflow" className="admin-action-btn">
-                Inventory Inflow
+
+                <Link to="/inventory/inflow" className="action-card inflow">
+                    <span className="action-icon">📥</span>
+                    <div className="action-text">
+                    <span className="action-title">Log Inflow</span>
+                    <p>Record new deliveries</p>
+                    </div>
                 </Link>
-                <Link to="/inventory/outflow" className="admin-action-btn">
-                Inventory Outflow
+
+                <Link to="/inventory/outflow" className="action-card outflow">
+                    <span className="action-icon">📤</span>
+                    <div className="action-text">
+                    <span className="action-title">Log Outflow</span>
+                    <p>Record stock usage</p>
+                    </div>
                 </Link>
-                <Link to="/inventory/waste" className="admin-action-btn">
-                Inventory Waste
+
+                <Link to="/inventory/waste" className="action-card waste">
+                    <span className="action-icon">🗑️</span>
+                    <div className="action-text">
+                    <span className="action-title">Log Waste</span>
+                    <p>Track spoiled items</p>
+                    </div>
                 </Link>
+                </div>
             </div>
-            </div>
-        )}
+            )}
 
         {/* ===== Header Section ===== */}
         <div className="inventory-header">
