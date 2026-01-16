@@ -15,6 +15,7 @@ import InventoryOutflow from "./pages/InventoryOutflow";
 import InventoryWaste from "./pages/InventoryWaste";
 import OrdersCreate from "./pages/OrdersCreate";
 import OrderItems from "./pages/OrderItems";
+import Invoice from "./pages/Invoice";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/inventory/waste" element={<InventoryWaste />} />
           <Route path="/orders/create" element={<OrdersCreate />} />
           <Route path="/orders/items" element={<OrderItems />} />
+          <Route path="/orders/invoice" element={<Invoice />} />
         </Route>
 
         {/* 🚫 Fallback */}
