@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getMenuItems } from "../services/menuService";
 import { createOrder, addOrderItem } from "../services/orderService";
 import "../styles/CustomerMenu.css";
+import Navbar from "../components/Navbar";
 
 function CustomerMenu() {
   const params = new URLSearchParams(window.location.search);
@@ -65,6 +66,7 @@ function CustomerMenu() {
 
   return (
     <div className="customer-menu-app">
+        <Navbar />
       <header className="menu-nav">
         <h1>KitchenPro</h1>
         <div className="table-badge">Table {tableNumber}</div>
