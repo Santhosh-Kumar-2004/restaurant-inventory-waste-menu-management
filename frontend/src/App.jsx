@@ -15,7 +15,8 @@ function App() {
       <h1>Restaurant System</h1>
 
       <Routes>
-        <Route path="/" element={<Inventory />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/inventory" element={<Inventory />} />
         {/* <Route path="/orders" element={<Orders />} /> */}
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/register" element={<Register />} />

@@ -3,11 +3,15 @@ import { loginUser } from "../services/authService";
 import "../styles/Login.css"
 import Register from "./Register";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [result, setResult] = useState("");
+  const navigate = useNavigate();
+
   
   const handleLogin = async () => {
     try {
@@ -15,7 +19,8 @@ function Login() {
 
         localStorage.setItem("user", JSON.stringify(res));
         setResult("Login successful");
-        window.location.reload(); // simple refresh-based flow
+        // window.location.reload(); 
+        navigate("/");
     } catch (err) {
         setResult(err.message);
     }
