@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from core.database import get_db
-from backend.models import user
+from models import user
 from routers.users import router as user_router
 
 

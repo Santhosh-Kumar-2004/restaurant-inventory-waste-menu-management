@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from backend.models.user import User, UserRole
+from models.user import User, UserRole
 import hashlib
 
 
