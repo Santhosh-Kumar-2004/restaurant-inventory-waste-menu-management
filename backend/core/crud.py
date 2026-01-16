@@ -9,6 +9,7 @@ from models.inventory import (
     WasteLog,
     InventoryUnit
 )
+from models.order import Order, OrderItem, Invoice
 
 
 def hash_password(password: str) -> str:
@@ -96,3 +97,50 @@ def add_waste(db: Session, data):
     db.add(waste)
     db.commit()
     return waste
+
+def create_order(db, table_number: int, created_by: int):
+    order = Order(
+        table_number=table_number,
+        created_by=created_by
+    )
+    db.add(order)
+    db.commit()
+    db.refresh(order)
+    return order
+
+
+def add_order_item(db, order_id: int, item):
+    order_item = OrderItem(
+        order_id=order_id,
+        item_name=item.item_name,
+        quantity=item.quantity,
+        price_per_unit=item.price_per_unit
+    )
+    db.add(order_item)
+    db.commit()
+    return order_item
+
+
+def generate_invoice(db, order_id: int, gst_rate: float = 5):
+    items = db.query(OrderItem).filter(OrderItem.order_id == order_id).all()
+
+    subtotal = sum(
+        float(i.quantity) * float(i.price_per_unit)
+        for i in items
+    )
+
+    gst_amount = (subtotal * gst_rate) / 100
+    total_amount = subtotal + gst_amount
+
+    invoice = Invoice(
+        order_id=order_id,
+        subtotal=subtotal,
+        gst_rate=gst_rate,
+        gst_amount=gst_amount,
+        total_amount=total_amount
+    )
+
+    db.add(invoice)
+    db.commit()
+    db.refresh(invoice)
+    return invoice
