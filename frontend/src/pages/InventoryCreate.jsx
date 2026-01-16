@@ -9,19 +9,20 @@ function InventoryCreate() {
   const [message, setMessage] = useState("");
 
   const handleCreate = async () => {
-    if (!name || !unit || !minimumStock) {
-        alert("Create atleast one item or leave this page!")
-    }
-    try {
+      if (!name || !unit || !minimumStock) {
+          alert("Create atleast one item or leave this page!")
+          setMessage("Inventory Item Is not created")
+      }
+      try {
       await createInventoryItem({
         name,
         unit,
         minimum_stock: Number(minimumStock)
       });
 
-      setMessage("Inventory item created successfully");
       setName("");
       setMinimumStock(0);
+      setMessage("Inventory item created successfully");
     } catch (err) {
       setMessage(err.message);
     }
