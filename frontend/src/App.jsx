@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Inventory from "./pages/Inventory";
 import AdminUsers from "./pages/AdminUsers";
+import Home from "./pages/Home";
 // import Orders from "./pages/Orders";
 
 function App() {
