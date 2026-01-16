@@ -40,6 +40,11 @@ function Navbar() {
                 Orders
               </Link>
             )}
+            {user.role === "admin" && (
+              <Link to="/chef/orders" className="nav-link admin-link">
+                Chef Orders
+              </Link>
+            )}
             {/* {user.role === "admin" && (
               <Link to="/orders/items" className="nav-link admin-link">
                 Order Items
