@@ -1,6 +1,14 @@
 from sqlalchemy.orm import Session
 from models.user import User, UserRole
 import hashlib
+from sqlalchemy.orm import Session
+from models.inventory import (
+    InventoryItem,
+    InventoryInflow,
+    InventoryOutflow,
+    WasteLog,
+    InventoryUnit
+)
 
 
 def hash_password(password: str) -> str:
@@ -38,3 +46,4 @@ def update_user_role(db: Session, user: User, role: str):
     db.commit()
     db.refresh(user)
     return user
+
