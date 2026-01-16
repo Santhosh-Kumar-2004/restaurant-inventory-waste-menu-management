@@ -1,6 +1,11 @@
 from schemas.user import UserCreate, UserLogin, UserResponse, RoleUpdate
 import models
-from core.crud import create_user, authenticate_user, get_user_by_id, update_user_role
+from core.crud import (
+    create_user as create_user_db,
+    authenticate_user,
+    get_user_by_id,
+    update_user_role
+)
 from sqlalchemy.orm import Session
 from fastapi import Depends, APIRouter, HTTPException
 from core.database import get_db
