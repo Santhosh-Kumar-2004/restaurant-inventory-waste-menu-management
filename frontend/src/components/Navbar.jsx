@@ -31,6 +31,12 @@ function Navbar() {
                 Staff Management
               </Link>
             )}
+            {/* 👑 Admin-only links */}
+            {user.role === "admin" && (
+              <Link to="/inventory/create" className="nav-link admin-link">
+                Inventory Create
+              </Link>
+            )}
           </div>
         </div>
 
