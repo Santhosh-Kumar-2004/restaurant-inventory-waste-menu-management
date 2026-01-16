@@ -7,7 +7,6 @@ function Inventory() {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-
   useEffect(() => {
     async function loadInventory() {
       try {
