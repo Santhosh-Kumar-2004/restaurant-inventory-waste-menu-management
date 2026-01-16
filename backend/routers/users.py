@@ -26,12 +26,13 @@ def get_current_user(
 
 @router.post("/users", response_model=UserResponse)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
-    return create_user(
+    return create_user_db(
         db,
         user.full_name,
         user.email,
         user.password
     )
+
 
 @router.post("/login")
 def login(user: UserLogin, db: Session = Depends(get_db)):
