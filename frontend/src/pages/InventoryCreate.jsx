@@ -9,24 +9,27 @@ function InventoryCreate() {
   const [message, setMessage] = useState("");
 
   const handleCreate = async () => {
-      if (!name || !unit || !minimumStock) {
-          alert("Create atleast one item or leave this page!")
-          setMessage("Inventory Item Is not created")
-      }
-      try {
-      await createInventoryItem({
-        name,
-        unit,
-        minimum_stock: Number(minimumStock)
-      });
-
-      setName("");
-      setMinimumStock(0);
-      setMessage("Inventory item created successfully");
-    } catch (err) {
-      setMessage(err.message);
+    // Trim to avoid spaces-only input
+    if (!name.trim() || !unit || minimumStock === "" || Number(minimumStock) <= 0) {
+        setMessage("Inventory Item is not created. Please fill all the fields.");
+        return; // 🚨 VERY IMPORTANT: stops request
     }
-  };
+
+    try {
+        await createInventoryItem({
+        name: name.trim(),
+        unit,
+        minimum_stock: Number(minimumStock),
+        });
+
+        setName("");
+        setMinimumStock("");
+        setMessage("Inventory item created successfully");
+    } catch (err) {
+        setMessage(err.message || "Something went wrong");
+    }
+    };
+
 
   return (
     <div className="inventory-create-container">
