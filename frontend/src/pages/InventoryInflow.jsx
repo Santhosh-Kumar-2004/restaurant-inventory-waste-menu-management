@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getInventoryReport } from "../services/inventoryService";
 import { apiFetch } from "../api/http";
+import Navbar from "../components/Navbar";
 
 function InventoryInflow() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -39,7 +40,7 @@ function InventoryInflow() {
 
   return (
     <div className="inflow-container">
-        
+        <Navbar />
         <div className="inflow-card">
         <div className="inflow-header">
             <div className="header-icon">📥</div>
