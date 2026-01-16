@@ -5,7 +5,7 @@ from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from core.database import get_db
 import core.crud
-from schemas import UserCreate, UserLogin, UserResponse, RoleUpdate
+from schemas.schema import UserCreate, UserLogin, UserResponse, RoleUpdate
 import models
 
 
