@@ -10,6 +10,7 @@ import InventoryCreate from "./pages/InventoryCreate";
 
 import PrivateRoute from "./routers/privateRoutes";
 import AdminRoute from "./routers/AdminRoute";
+import InventoryInflow from "./pages/InventoryInflow";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route element={<AdminRoute />}>
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/inventory/create" element={<InventoryCreate />} />
+          <Route path="/inventory/inflow" element={<InventoryInflow />} />
         </Route>
 
         {/* 🚫 Fallback */}
