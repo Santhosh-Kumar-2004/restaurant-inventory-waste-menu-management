@@ -12,6 +12,7 @@ from models.inventory import (
 from models.order import Order, OrderItem, Invoice
 from sqlalchemy import func
 from models.inventory import InventoryItem, InventoryInflow, InventoryOutflow, WasteLog
+from models.order import Order, Invoice
 
 
 
@@ -192,3 +193,18 @@ def get_current_stock(db):
     )
 
     return results
+
+def get_orders_summary(db):
+    return db.query(
+        Order.id,
+        Order.table_number,
+        Order.status
+    ).all()
+    
+def get_invoices_summary(db):
+    return db.query(
+        Invoice.order_id,
+        Invoice.subtotal,
+        Invoice.gst_amount,
+        Invoice.total_amount
+    ).all()
