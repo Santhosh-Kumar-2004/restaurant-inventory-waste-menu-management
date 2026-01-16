@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from core.database import get_db
 import core.crud
 from schemas.schema import UserCreate, UserLogin, UserResponse, RoleUpdate
-import models
+import models.models
 
 
 load_dotenv()
