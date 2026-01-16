@@ -48,6 +48,15 @@ function Orders() {
             </div>
             <span className="arrow">→</span>
           </Link>
+
+          <Link to="/orders/all" className="order-card invoice-card">
+            <div className="card-icon">🙋‍♂️</div>
+            <div className="card-info">
+              <h3>All Orders Are Here</h3>
+              <p>Check all the Order and Modify Status.</p>
+            </div>
+            <span className="arrow">→</span>
+          </Link>
         </section>
 
         <footer className="orders-footer">
