@@ -42,6 +42,11 @@ function Navbar() {
                 Inventory Inflow
               </Link>
             )}
+            {user.role === "admin" && (
+              <Link to="/inventory/outflow" className="nav-link admin-link">
+                Inventory Outflow
+              </Link>
+            )}
           </div>
         </div>
 
