@@ -24,21 +24,53 @@ function OrdersCreate() {
   };
 
   return (
-    <div>
-      <h2>Create Order</h2>
+    <div className="order-create-container">
+        <div className="order-create-card">
+        <div className="order-header">
+            <div className="order-icon">🍽️</div>
+            <h2>New Service Order</h2>
+            <p>Assign a table number to begin the order process.</p>
+        </div>
 
-      <input
-        type="number"
-        placeholder="Table number"
-        value={tableNumber}
-        onChange={(e) => setTableNumber(e.target.value)}
-      />
+        <div className="order-form">
+            <div className="table-input-section">
+            <label>Table Number</label>
+            <input
+                type="number"
+                className="table-number-input"
+                placeholder="00"
+                value={tableNumber}
+                onChange={(e) => setTableNumber(e.target.value)}
+                autoFocus
+            />
+            </div>
 
-      <button onClick={handleCreateOrder}>Create Order</button>
+            <button 
+            className="create-order-btn" 
+            onClick={handleCreateOrder}
+            disabled={!tableNumber}
+            >
+            Open Table Order
+            </button>
+        </div>
 
-      <p>{result}</p>
+        {result && (
+            <div className={`order-result-banner ${result.includes("Order ID") ? "success" : "error"}`}>
+            {result}
+            {result.includes("Order ID") && (
+                <div className="order-next-steps">
+                <small>System ready for item entry.</small>
+                </div>
+            )}
+            </div>
+        )}
+
+        <div className="waiter-context">
+            <span>Waiter: <strong>{user?.full_name || user?.email}</strong></span>
+        </div>
+        </div>
     </div>
-  );
+    );
 }
 
 export default OrdersCreate;
