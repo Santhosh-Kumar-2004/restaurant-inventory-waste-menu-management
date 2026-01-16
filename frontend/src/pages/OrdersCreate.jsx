@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiFetch } from "../api/http";
+import { createOrder } from "../services/orderService";
 import "../styles/OrderCreate.css"
 import Navbar from "../components/Navbar";
 
@@ -10,16 +10,16 @@ function OrdersCreate() {
 
   const handleCreateOrder = async () => {
     try {
-      const res = await apiFetch("/orders", {
-        method: "POST",
-        body: JSON.stringify({
-          table_number: Number(tableNumber),
-          created_by: user.user_id
-        })
+      const res = await createOrder({
+        table_number: Number(tableNumber),
+        created_by: user.user_id,
       });
 
+      // store current order id for next steps
       localStorage.setItem("current_order_id", res.order_id);
-      setResult(`Order created. Order ID: ${res.order_id}`);
+
+      setResult(`Order created successfully. Order ID: ${res.order_id}`);
+      setTableNumber("");
     } catch (err) {
       setResult(err.message);
     }
