@@ -1,6 +1,6 @@
 from schemas.schema import UserCreate, UserLogin, UserResponse, RoleUpdate
 import models
-from core.crud import create_user, authenticate_user
+from core.crud import create_user, authenticate_user, get_user_by_id, update_user_role
 from sqlalchemy.orm import Session
 from fastapi import Depends, APIRouter, HTTPException
 from core.database import get_db
@@ -40,3 +40,22 @@ def get_users(
         raise HTTPException(status_code=403, detail="Admin access required")
 
     return db.query(models.User).all()
+
+
+@router.put("/users/{user_id}/role", response_model=UserResponse)
+def change_user_role(
+    user_id: int,
+    role_data: RoleUpdate,
+    email: str,
+    db: Session = Depends(get_db)
+):
+    current_user = get_current_user(email, db)
+
+    if current_user.role.value != "admin":
+        raise HTTPException(status_code=403, detail="Admin access required")
+
+    user = get_user_by_id(db, user_id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return update_user_role(db, user, role_data.role)
