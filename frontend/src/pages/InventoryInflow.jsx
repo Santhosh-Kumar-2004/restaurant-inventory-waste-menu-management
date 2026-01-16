@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getInventoryReport, createInventoryItem } from "../services/inventoryService";
+import { getInventoryReport } from "../services/inventoryService";
 import { apiFetch } from "../api/http";
 
 function InventoryInflow() {
@@ -38,36 +38,75 @@ function InventoryInflow() {
   };
 
   return (
-    <div>
-      <h2>Inventory Inflow</h2>
+    <div className="inflow-container">
+        
+        <div className="inflow-card">
+        <div className="inflow-header">
+            <div className="header-icon">📥</div>
+            <h2>Stock Intake</h2>
+            <p>Log new supplies and inventory deliveries here.</p>
+        </div>
 
-      <select onChange={(e) => setItemId(e.target.value)}>
-        <option value="">Select Item</option>
-        {items.map((item) => (
-          <option key={item.inventory_item_id} value={item.inventory_item_id}>
-            {item.item_name}
-          </option>
-        ))}
-      </select>
+        <div className="inflow-form">
+            <div className="input-field-group">
+            <label>Select Inventory Item</label>
+            <select 
+                className="styled-select" 
+                onChange={(e) => setItemId(e.target.value)}
+                value={itemId}
+            >
+                <option value="">Choose an item...</option>
+                {items.map((item) => (
+                <option key={item.inventory_item_id} value={item.inventory_item_id}>
+                    {item.item_name}
+                </option>
+                ))}
+            </select>
+            </div>
 
-      <input
-        type="number"
-        placeholder="Quantity received"
-        value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
-      />
+            <div className="inflow-row">
+            <div className="input-field-group">
+                <label>Quantity Received</label>
+                <input
+                type="number"
+                placeholder="0.00"
+                className="styled-input"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                />
+            </div>
 
-      <select value={unit} onChange={(e) => setUnit(e.target.value)}>
-        <option value="kg">Kg</option>
-        <option value="liter">Liter</option>
-        <option value="piece">Piece</option>
-      </select>
+            <div className="input-field-group">
+                <label>Unit</label>
+                <select 
+                className="styled-select" 
+                value={unit} 
+                onChange={(e) => setUnit(e.target.value)}
+                >
+                <option value="kg">Kilograms (Kg)</option>
+                <option value="liter">Liters (L)</option>
+                <option value="piece">Pieces (Pcs)</option>
+                </select>
+            </div>
+            </div>
 
-      <button onClick={handleInflow}>Add Inflow</button>
+            <div className="received-info">
+            <span>Receiving Officer: <strong>{user?.email}</strong></span>
+            </div>
 
-      <p>{message}</p>
+            <button className="inflow-submit-btn" onClick={handleInflow}>
+            Record Intake
+            </button>
+        </div>
+
+        {message && (
+            <div className={`status-alert ${message.includes("successfully") ? "success" : "error"}`}>
+            {message}
+            </div>
+        )}
+        </div>
     </div>
-  );
+    );
 }
 
 export default InventoryInflow;
