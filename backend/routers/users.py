@@ -4,9 +4,20 @@ from core.crud import create_user, authenticate_user, get_user_by_id, update_use
 from sqlalchemy.orm import Session
 from fastapi import Depends, APIRouter, HTTPException
 from core.database import get_db
-from main import get_current_user
+# from main import get_current_user
 
 router = APIRouter(prefix="/users")
+
+def get_current_user(
+    email: str,
+    db: Session = Depends(get_db)
+):
+    user = db.query(models.User).filter(models.User.email == email).first()
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid user")
+    return user
+
+
 
 @router.post("/users", response_model=UserResponse)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):

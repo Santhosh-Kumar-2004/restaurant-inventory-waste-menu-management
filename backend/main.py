@@ -5,6 +5,7 @@ from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from core.database import get_db
 from models import models
+from routers.users import router as user_router
 
 
 load_dotenv()
@@ -23,16 +24,6 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-def get_current_user(
-    email: str,
-    db: Session = Depends(get_db)
-):
-    user = db.query(models.User).filter(models.User.email == email).first()
-    if not user:
-        raise HTTPException(status_code=401, detail="Invalid user")
-    return user
-
-
 @app.get("/")
 def root_router():
     return "The app is Running! 🚀"
@@ -40,3 +31,4 @@ def root_router():
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
+
