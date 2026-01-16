@@ -25,36 +25,64 @@ function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className="auth-page-wrapper">
+        <div className="auth-card">
+        <div className="auth-header">
+            <div className="auth-logo">📝</div>
+            <h2>Create Account</h2>
+            <p>Join our agricultural auction community today</p>
+        </div>
 
-      <input
-        placeholder="Full Name"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-        required
-      />
+        <div className="auth-form">
+            <div className="form-group">
+            <label>Full Name</label>
+            <input
+                placeholder="John Doe"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+            />
+            </div>
 
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
+            <div className="form-group">
+            <label>Email Address</label>
+            <input
+                type="email"
+                placeholder="john@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+            />
+            </div>
 
-      <input
-        placeholder="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
+            <div className="form-group">
+            <label>Password</label>
+            <input
+                placeholder="••••••••"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+            />
+            </div>
 
-      <button onClick={handleRegister}>Register</button>
+            <button className="auth-submit-btn" onClick={handleRegister}>
+            Register Now
+            </button>
+        </div>
 
-      <p>{result}</p>
+        {result && (
+            <div className={`auth-message ${result.includes("successfully") ? "success" : "error"}`}>
+            {result}
+            </div>
+        )}
+
+        <div className="auth-footer">
+            <p>Already have an account? <a href="/login">Sign In</a></p>
+        </div>
+        </div>
     </div>
-  );
+    );
 }
 
 export default Register;
