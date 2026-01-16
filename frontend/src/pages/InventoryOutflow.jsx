@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getInventoryReport } from "../services/inventoryService";
 import { apiFetch } from "../api/http";
 import "../styles/InventoryOutflow.css"
+import Navbar from "../components/Navbar";
 
 function InventoryOutflow() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -43,6 +44,7 @@ function InventoryOutflow() {
 
   return (
     <div className="outflow-container">
+        <Navbar />
         <div className="outflow-card">
         <div className="outflow-header">
             <div className="header-icon">📤</div>
