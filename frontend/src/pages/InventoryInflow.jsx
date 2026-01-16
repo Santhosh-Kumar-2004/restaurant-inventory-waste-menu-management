@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getInventoryReport } from "../services/inventoryService";
 import { apiFetch } from "../api/http";
 import Navbar from "../components/Navbar";
+import "../styles/InventoryInflow.css"
 
 function InventoryInflow() {
   const user = JSON.parse(localStorage.getItem("user"));
