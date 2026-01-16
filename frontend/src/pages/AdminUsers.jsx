@@ -86,6 +86,7 @@ function AdminUsers() {
                     <option value="user">User</option>
                     <option value="chef">Chef</option>
                     <option value="waiter">Waiter</option>
+                    <option value="admin">admin</option>
                   </select>
                 )}
               </td>
