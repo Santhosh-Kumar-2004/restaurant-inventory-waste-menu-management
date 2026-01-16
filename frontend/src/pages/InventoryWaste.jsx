@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getInventoryReport } from "../services/inventoryService";
 import { apiFetch } from "../api/http";
 import "../styles/InventoryWaste.css"
+import Navbar from "../components/Navbar";
 
 function InventoryWaste() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -44,6 +45,7 @@ function InventoryWaste() {
 
   return (
     <div className="waste-container">
+        <Navbar />
         <div className="waste-card">
         <div className="waste-header">
             <div className="header-icon">🗑️</div>
