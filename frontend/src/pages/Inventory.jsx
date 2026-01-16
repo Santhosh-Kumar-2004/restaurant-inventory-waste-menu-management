@@ -39,6 +39,14 @@ function Inventory() {
           </li>
         ))}
       </ul>
+      <button
+          onClick={() => {
+            localStorage.removeItem("user");
+            window.location.reload();
+          }}
+        >
+          Logout
+        </button>
     </div>
   );
 }

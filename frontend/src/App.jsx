@@ -19,14 +19,6 @@ function App() {
         <Route path="/inventory" element={<Inventory />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-        <button
-          onClick={() => {
-            localStorage.removeItem("user");
-            window.location.reload();
-          }}
-        >
-          Logout
-        </button>
     </div>
   );
 }
