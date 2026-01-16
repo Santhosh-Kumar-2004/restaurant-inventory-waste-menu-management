@@ -13,28 +13,38 @@ function Navbar() {
   if (!user) return null;
 
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
-        <h3 className="navbar-logo">🍽 Restaurant System</h3>
+    <nav className="navbar-container">
+      <div className="navbar-content">
+        <div className="navbar-left">
+          <div className="navbar-brand">
+            <span className="brand-icon">🍽️</span>
+            <h3 className="navbar-logo">KitchenPro</h3>
+          </div>
 
-        <Link to="/">Home</Link>
-        <Link to="/inventory">Inventory</Link>
+          <div className="nav-links">
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/inventory" className="nav-link">Inventory</Link>
 
-        {/* 👑 Admin-only links */}
-        {user.role === "admin" && (
-          <>
-            <Link to="/admin/users">Users</Link>
-          </>
-        )}
-      </div>
+            {/* 👑 Admin-only links */}
+            {user.role === "admin" && (
+              <Link to="/admin/users" className="nav-link admin-link">
+                Staff Management
+              </Link>
+            )}
+          </div>
+        </div>
 
-      <div className="navbar-right">
-        <span className="navbar-user">
-          {user.email} ({user.role})
-        </span>
-        <button onClick={handleLogout} className="logout-btn">
-          Logout
-        </button>
+        <div className="navbar-right">
+          <div className="user-profile">
+            <div className="user-details">
+              <span className="user-email">{user.email}</span>
+              <span className={`role-tag ${user.role}`}>{user.role}</span>
+            </div>
+            <button onClick={handleLogout} className="logout-action-btn">
+              Logout
+            </button>
+          </div>
+        </div>
       </div>
     </nav>
   );
