@@ -12,8 +12,8 @@ function Home() {
       <section className="hero-section">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <span className="hero-badge">The Future of Agri-Trade</span>
-          <h1>Modern Agricultural <br /><span>Auction Marketplace</span></h1>
+          <span className="hero-badge">The Future of Restaurants</span>
+          <h1>Modern Inventory and<br /><span>Waste Managements</span></h1>
           <p>
             The most transparent way to buy and sell high-value agricultural assets. 
             Real-time bidding, verified inventory, and secure transactions.
