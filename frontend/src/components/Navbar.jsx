@@ -29,10 +29,12 @@ function Navbar() {
                 Staff Management
               </Link>
             )}
-            <Link to="/inventory" className="nav-link">Inventory</Link>
+            <Link to="/menu" className="nav-link">Menu</Link>
 
             {/* 👑 Admin-only links */}
-
+            {user.role === "admin" && (
+              <Link to="/inventory" className="nav-link">Inventory</Link>
+            )}
             {user.role === "admin" && (
               <Link to="/orders" className="nav-link admin-link">
                 Orders
