@@ -26,3 +26,18 @@ def add_item(
 ):
     crud.add_order_item(db, order_id, item)
     return {"message": "Item added to order"}
+
+@router.post("/{order_id}/invoice", response_model=InvoiceResponse)
+def generate_invoice(
+    order_id: int,
+    db: Session = Depends(get_db)
+):
+    invoice = crud.generate_invoice(db, order_id)
+
+    return {
+        "order_id": invoice.order_id,
+        "subtotal": invoice.subtotal,
+        "gst_rate": invoice.gst_rate,
+        "gst_amount": invoice.gst_amount,
+        "total_amount": invoice.total_amount
+    }
