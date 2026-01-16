@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { apiFetch } from "../api/http";
-import "./ChefOrders.css";
+import "../styles/ChefOrders.css";
+import Navbar from "../components/Navbar";
 
 function ChefOrders() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -49,6 +50,7 @@ function ChefOrders() {
 
   return (
     <div className="chef-dashboard">
+        <Navbar />
       <header className="chef-header">
         <div className="brand">
           <h1>Kitchen Display System</h1>
