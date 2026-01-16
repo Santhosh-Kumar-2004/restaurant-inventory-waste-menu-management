@@ -41,42 +41,87 @@ function InventoryOutflow() {
   };
 
   return (
-    <div>
-      <h2>Inventory Outflow (Usage)</h2>
+    <div className="outflow-container">
+        <div className="outflow-card">
+        <div className="outflow-header">
+            <div className="header-icon">📤</div>
+            <h2>Inventory Outflow</h2>
+            <p>Record stock usage for kitchen prep or staff meals.</p>
+        </div>
 
-      <select onChange={(e) => setItemId(e.target.value)}>
-        <option value="">Select Item</option>
-        {items.map((item) => (
-          <option key={item.inventory_item_id} value={item.inventory_item_id}>
-            {item.item_name}
-          </option>
-        ))}
-      </select>
+        <div className="outflow-form">
+            <div className="form-group">
+            <label>Item Consumed</label>
+            <select 
+                className="styled-input" 
+                onChange={(e) => setItemId(e.target.value)}
+                value={itemId}
+            >
+                <option value="">Choose an item...</option>
+                {items.map((item) => (
+                <option key={item.inventory_item_id} value={item.inventory_item_id}>
+                    {item.item_name}
+                </option>
+                ))}
+            </select>
+            </div>
 
-      <input
-        type="number"
-        placeholder="Quantity used"
-        value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
-      />
+            <div className="form-row">
+            <div className="form-group">
+                <label>Quantity Used</label>
+                <input
+                type="number"
+                className="styled-input"
+                placeholder="0.00"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                />
+            </div>
 
-      <select value={unit} onChange={(e) => setUnit(e.target.value)}>
-        <option value="kg">Kg</option>
-        <option value="liter">Liter</option>
-        <option value="piece">Piece</option>
-      </select>
+            <div className="form-group">
+                <label>Unit</label>
+                <select 
+                className="styled-input" 
+                value={unit} 
+                onChange={(e) => setUnit(e.target.value)}
+                >
+                <option value="kg">Kg</option>
+                <option value="liter">Liter</option>
+                <option value="piece">Piece</option>
+                </select>
+            </div>
+            </div>
 
-      <select value={reason} onChange={(e) => setReason(e.target.value)}>
-        <option value="order_preparation">Order Preparation</option>
-        <option value="staff_meal">Staff Meal</option>
-        <option value="testing">Testing</option>
-      </select>
+            <div className="form-group">
+            <label>Reason for Usage</label>
+            <select 
+                className="styled-input" 
+                value={reason} 
+                onChange={(e) => setReason(e.target.value)}
+            >
+                <option value="order_preparation">🍽️ Order Preparation</option>
+                <option value="staff_meal">🧑‍🍳 Staff Meal</option>
+                <option value="testing">🧪 Testing/Quality Check</option>
+            </select>
+            </div>
 
-      <button onClick={handleOutflow}>Add Outflow</button>
+            <button className="outflow-submit-btn" onClick={handleOutflow}>
+            Confirm Stock Usage
+            </button>
+        </div>
 
-      <p>{message}</p>
+        {message && (
+            <div className={`form-feedback ${message.includes("success") ? "success" : "error"}`}>
+            {message}
+            </div>
+        )}
+
+        <div className="outflow-footer">
+            <p>Logged by: <strong>{user?.role}</strong> ({user?.email})</p>
+        </div>
+        </div>
     </div>
-  );
+    );
 }
 
 export default InventoryOutflow;
