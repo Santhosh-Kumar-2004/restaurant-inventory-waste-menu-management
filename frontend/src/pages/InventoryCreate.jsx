@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createInventoryItem } from "../services/inventoryService";
 import "../styles/InventoryCreate.css"
+import Navbar from "../components/Navbar";
 
 function InventoryCreate() {
   const [name, setName] = useState("");
@@ -33,6 +34,7 @@ function InventoryCreate() {
 
   return (
     <div className="inventory-create-container">
+        <Navbar />  
         <div className="inventory-create-card">
         <div className="create-header">
             <div className="icon-badge">➕</div>
