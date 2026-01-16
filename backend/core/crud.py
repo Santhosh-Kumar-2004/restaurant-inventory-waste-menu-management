@@ -47,3 +47,52 @@ def update_user_role(db: Session, user: User, role: str):
     db.refresh(user)
     return user
 
+
+def create_inventory_item(db: Session, name: str, unit: str, minimum_stock: float):
+    item = InventoryItem(
+        name=name,
+        unit=InventoryUnit(unit),
+        minimum_stock=minimum_stock
+    )
+    db.add(item)
+    db.commit()
+    db.refresh(item)
+    return item
+
+
+def add_inflow(db: Session, data):
+    inflow = InventoryInflow(
+        inventory_item_id=data.inventory_item_id,
+        quantity=data.quantity,
+        unit=InventoryUnit(data.unit),
+        received_by=data.received_by
+    )
+    db.add(inflow)
+    db.commit()
+    return inflow
+
+
+def add_outflow(db: Session, data):
+    outflow = InventoryOutflow(
+        inventory_item_id=data.inventory_item_id,
+        quantity=data.quantity,
+        unit=InventoryUnit(data.unit),
+        reason=data.reason,
+        used_by=data.used_by
+    )
+    db.add(outflow)
+    db.commit()
+    return outflow
+
+
+def add_waste(db: Session, data):
+    waste = WasteLog(
+        inventory_item_id=data.inventory_item_id,
+        quantity=data.quantity,
+        unit=InventoryUnit(data.unit),
+        reason=data.reason,
+        reported_by=data.reported_by
+    )
+    db.add(waste)
+    db.commit()
+    return waste
