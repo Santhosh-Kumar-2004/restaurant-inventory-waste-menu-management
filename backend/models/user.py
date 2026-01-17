@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean, Enum
 from core.database import Base
 import enum
+from core.security import hash_password
 
 
 class UserRole(enum.Enum):
