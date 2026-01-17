@@ -9,6 +9,8 @@ from core.crud import (
 from sqlalchemy.orm import Session
 from fastapi import Depends, APIRouter, HTTPException
 from core.database import get_db
+from core.security import verify_password
+
 # from main import get_current_user
 
 router = APIRouter(tags=["Users"])
@@ -40,6 +42,10 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     db_user = authenticate_user(db, user.email, user.password)
     if not db_user:
         raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    if not verify_password(User.password, user.password):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
 
     return {
         "message": "Login successful",
